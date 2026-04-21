@@ -12,6 +12,9 @@ use_short_cap=False
 use_uniform_prompt=True
 clean_caption=True
 
+local_coco_root = '/root/autodl-tmp/grounding_data/coco/'
+local_flick_root = '/root/autodl-tmp/grounding_data/flickr30k_entities/'
+
 randomness=dict(seed=624982218)
 
 model = dict(
@@ -201,8 +204,9 @@ test_pipeline = [
 # --------------------------- coco2017 od dataset---------------------------
 coco2017_train_dataset = dict(
     type='ODVGDataset',
-    data_root='../grounding_data/coco/',
-    ann_file='annotations/instances_train2017_vg_merged6.jsonl',
+    # data_root='../grounding_data/coco/',
+    data_root=local_coco_root,
+    ann_file='annotations/instances_train2017_vg_merged6.cleaned.jsonl',
     data_prefix=dict(img='train2017'),
     filter_cfg=dict(filter_empty_gt=False),
     pipeline=train_pipeline,
@@ -216,8 +220,9 @@ coco2017_train_dataset = dict(
 # --------------------------- flickr30k vg dataset---------------------------
 flickr30k_dataset = dict(
     type='ODVGDataset',
-    data_root='../grounding_data/flickr30k_entities/',
-    ann_file='flickr_train_vg7.jsonl',
+    # data_root='../grounding_data/flickr30k_entities/',
+    data_root=local_flick_root,
+    ann_file='flickr_train_vg7.cleaned.jsonl',
     label_map_file=None,
     data_prefix=dict(img='flickr30k_images/'),
     filter_cfg=dict(filter_empty_gt=False),
@@ -233,7 +238,7 @@ flickr30k_dataset = dict(
 gqa_dataset = dict(
     type='ODVGDataset',
     data_root='../grounding_data/gqa/',
-    ann_file='gqa_train_vg7.jsonl',
+    ann_file='gqa_train_vg7.cleaned.jsonl',
     label_map_file=None,
     data_prefix=dict(img='images/'),
     filter_cfg=dict(filter_empty_gt=False),
@@ -265,7 +270,7 @@ caption_dataset = dict(
 v3det_dataset = dict(
     type='ODVGDataset',
     data_root='../grounding_data/v3det/',
-    ann_file='annotations/v3det_2023_v1_train_vg7.jsonl',
+    ann_file='annotations/v3det_available.jsonl',
     label_map_file=None,
     data_prefix=dict(img=''),
     filter_cfg=dict(filter_empty_gt=False),
@@ -287,17 +292,19 @@ train_dataloader = dict(
     dataset=dict(type='ConcatDataset', datasets=[
         coco2017_train_dataset,
         flickr30k_dataset,
-        gqa_dataset,
-        caption_dataset,
-        v3det_dataset,
+        # gqa_dataset,
+        # caption_dataset,
+        # v3det_dataset,
     ]))
 
 dataset_type = 'LVISV1Dataset'
-data_root = '../grounding_data/coco/'
+# data_root = '../grounding_data/coco/'
+data_root = local_coco_root
 
 val_dataloader = dict(
     dataset=dict(
-        data_root=data_root,
+        # data_root=data_root,
+        data_root=local_coco_root,
         type=dataset_type,
         ann_file='annotations/lvis_v1_minival_inserted_image_name.json',
         data_prefix=dict(img=''),

@@ -5,7 +5,7 @@ model = dict(
 )
 
 dataset_type = 'LVISV1Dataset'
-data_root = '../grounding_data/coco/'
+data_root = '/root/autodl-tmp/grounding_data/coco/'
 
 val_dataloader = dict(
     dataset=dict(

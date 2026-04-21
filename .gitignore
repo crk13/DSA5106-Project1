@@ -1,1 +1,9 @@
-*.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+work_dirs/
+output.txt
+tmux_output_full.txt
+*.log
+*.pkl
+*.pth
