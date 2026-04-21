@@ -43,6 +43,22 @@ dataset/
     └── configs/
         └── grounding_dino_swin_t.py
 ```
+#### Data Preparation (GroundingCap-1M)
+
+Our grounding data follows the setup of [LLMDet](https://github.com/isee-laboratory/LLMDet).
+
+The GroundingCap-1M data is composed of the following sources:
+
+- `coco`: You can download the images from the [COCO official website](https://cocodataset.org/) or from [OpenDataLab](https://opendatalab.com/OpenDataLab/COCO_2017).
+- `lvis`: LVIS shares the same images with COCO. You can download the `minival` annotation file from [here](https://huggingface.co/GLIPModel/GLIP/blob/main/lvis_v1_minival_inserted_image_name.json), and the `val 1.0` annotation file from [here](https://huggingface.co/GLIPModel/GLIP/blob/main/lvis_od_val.json).
+- `flickr30k_entities`: Download the Flickr30k images from [here](https://shannon.cs.illinois.edu/DenotationGraph/).
+- `gqa`: Download the GQA images from the [official website](https://cs.stanford.edu/people/dorarad/gqa/download.html).
+- `llava_cap`: Download the images from [here](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain/blob/main/images.zip).
+- `v3det`: The V3Det dataset can be downloaded from [OpenDataLab](https://opendatalab.com/V3Det/V3Det).
+
+Our processed JSONL annotation files can be found on [Hugging Face](https://huggingface.co/fushh7/LLMDet) or [ModelScope](https://modelscope.cn/models/fushh7/LLMDet).
+
+For other evaluation datasets, please refer to [MM-GDINO](https://github.com/open-mmlab/mmdetection/blob/main/configs/mm_grounding_dino/dataset_prepare.md).
 
 #### Dataset Preparation Summary
 
